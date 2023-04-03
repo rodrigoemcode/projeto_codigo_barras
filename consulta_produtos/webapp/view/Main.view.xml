@@ -1,25 +1,24 @@
 <mvc:View controllerName="consultaprodutos.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content>
-            <FlexBox justifyContent="Center">
-                <Input id="inpBusca"/>
-                <Button text="Buscar" press="onPressBuscar"/>
-            </FlexBox>
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">
+	<Page id="page" title="{i18n>title}">
+		<content>
+			<FlexBox justifyContent="Center">
+				<Input id="inpBusca"/>
+				<Button text="Buscar" press="onPressBuscar"/>
+			</FlexBox>
 
-            <VBox id="productBox" visible="true">
-                <ObjectHeader 
-                title="{ModeloProduto>/product/product_name}"
-                number="{ModeloProduto>/product/quantity}"/>
-                <attributes>
-                    <ObjectAttribute title="Código de Barras" text="{ModeloProduto>/code}"/>                   
-                    <ObjectAttribute title="Marca" text="{ModeloProduto>/product/brands}"/>
-                                    
-                </attributes>
-                </ObjectHeader>
-
-            </VBox>
-        </content>
-    </Page>
+			<VBox id="productBox" visible="true">
+				<ObjectHeader id="objHeader" 
+					title="{ModeloProduto>/product/product_name}"
+					number="{ModeloProduto>/product/quantity}"
+					models="ModeloProduto">
+					<attributes>
+						<ObjectAttribute title="Código de Barras" text="{ModeloProduto>/product/code}"/>                   
+						<ObjectAttribute title="Marca" text="{ModeloProduto>/product/brands}"/>                                    
+					</attributes>
+				</ObjectHeader>
+			</VBox>
+		</content>
+	</Page>
 </mvc:View>
