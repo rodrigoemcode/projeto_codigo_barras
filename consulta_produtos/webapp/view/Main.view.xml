@@ -18,6 +18,19 @@
 						<ObjectAttribute title="Marca" text="{ModeloProduto>/product/brands}"/>                                    
 					</attributes>
 				</ObjectHeader>
+
+				<Panel headerText="Informações">
+					<content>
+						<HBox>
+							<Image src="{ModeloProduto>/product/image_front_url}" width="15em" press="OnClickImage"/>
+								<VBox >
+									<ObjectAttribute title="Categoria" text="{ModeloProduto>/product/categories}"/>
+									<ObjectAttribute title="Ingredientes" text="{ModeloProduto>/product/ingredients_text}"/>
+									<ObjectAttribute title="Data de Vencimento" text="{ModeloProduto>/product/expiration_date}"/>
+								</VBox>
+						</HBox>
+					</content>
+				</Panel>
 			</VBox>
 		</content>
 	</Page>

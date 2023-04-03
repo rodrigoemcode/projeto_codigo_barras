@@ -1,12 +1,19 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast"
-], function (Controller, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/m/library"
+], function (Controller, MessageToast, library) {
 	"use strict";
+
+	var urlObject = library.URLHelper;
 
 	return Controller.extend("consultaprodutos.controller.Main", {
 
 		onInit: function () {
+		},
+
+		OnClickImage: function (oEvent) {
+			urlObject.redirect(oEvent.getSource().getSrc(), true );
 		},
 
 		onPressBuscar: function () {
