@@ -7,7 +7,7 @@ sap.ui.define([
 ], function (Controller, MessageToast, library, JSONModel) {
 	"use strict";
 
-	var urlObject = library.URLHelper;
+	let urlObject = library.URLHelper;
 
 	return Controller.extend("consultaprodutos.controller.Main", {
 
@@ -15,7 +15,7 @@ sap.ui.define([
 			let produto = {};
 			let productModel = new JSONModel(produto);
 			let view = this.getView();
-			view.setModel(productModel);
+			view.setModel(productModel, "ModeloProduto");
 			//this no javascript = ME - > no ABAP
 		},
 
@@ -24,36 +24,33 @@ sap.ui.define([
 		},
 
 		onPressBuscar: function () {
-			var input = this.byId("inpBusca");
-			var codigoBarras = input.getValue();
+			let input;
+			input = this.byId("inpBuscar");
+			let valor = input.getValue();
+			//alert(valor);
 
-			// Cria uma instância do modelo
-			var oModel = new sap.ui.model.json.JSONModel();
+			let parameters = {
+				url : "https://world.openfoodfacts.org/api/v2/product/" + valor,
+				method : "GET",
+				async : true,
+				crossDomain : true
+			};
+			//promise = quando uma função retorna como parametro de exportação
+			//outra função
 
-			// Define a URL do serviço
-			var sUrl = "/produto/busca_produto.php?code=" + codigoBarras;
+			$.ajax(parameters).done(function(response){
 
-			// Define a propriedade 'model' da View para o modelo criado
-			this.getView().setModel(oModel);
+				let oProdutoModel = this.getView().getModel("ModeloProduto");
+				//clear
+				oProdutoModel.setData({});
+				oProdutoModel.refresh();
+				oProdutoModel.setData(response);
+				oProdutoModel.refresh();
+			}.bind(this)) // sucesso
+			.fail(function(){
+				
+			}); //excpetion
 
-			// Define a propriedade 'source' do ObjectHeader para o modelo criado
-			var oObjectHeader = this.byId("objHeader");
-			oObjectHeader.setModel(oModel);
-
-			// Faz a requisição para o serviço
-			jQuery.ajax({
-				type: "GET",
-				contentType: "application/json",
-				url: sUrl,
-				dataType: "json",
-				async: false,
-				success: function (data, textStatus, jqXHR) {
-					oModel.setData(data);
-				},
-				error: function (jqXHR, textStatus, errorThrown) {
-					MessageToast.show("Erro na requisição");
-				}
-			});
 		}
 	});
 });
