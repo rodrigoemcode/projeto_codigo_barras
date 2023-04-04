@@ -58,7 +58,7 @@
           "bundleName": "consultaprodutos.i18n.i18n"
         }
       },
-      "ModeloProduto": {
+      "ModeloProdutoArquivo": {
         "type" : "sap.ui.model.json.JSONModel",
         "uri": "model/produtos.json"
       }

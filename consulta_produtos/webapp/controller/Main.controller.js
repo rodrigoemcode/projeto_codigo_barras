@@ -1,15 +1,22 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
-	"sap/m/library"
-], function (Controller, MessageToast, library) {
+	"sap/m/library",
+	"sap/ui/model/json/JSONModel"
+
+], function (Controller, MessageToast, library, JSONModel) {
 	"use strict";
 
 	var urlObject = library.URLHelper;
 
 	return Controller.extend("consultaprodutos.controller.Main", {
 
-		onInit: function () {
+		onInit: function () { //onInit equivale a INITIALIZATION no ABAP
+			let produto = {};
+			let productModel = new JSONModel(produto);
+			let view = this.getView();
+			view.setModel(productModel);
+			//this no javascript = ME - > no ABAP
 		},
 
 		OnClickImage: function (oEvent) {
