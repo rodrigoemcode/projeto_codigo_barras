@@ -4,7 +4,7 @@
 	<Page id="page" title="{i18n>title}">
 		<content>
 			<FlexBox justifyContent="Center">
-				<Input id="inpBusca"/>
+				<Input id="inpBuscar"/>
 				<Button text="Buscar" press="onPressBuscar"/>
 			</FlexBox>
 
@@ -22,12 +22,51 @@
 				<Panel headerText="Informações">
 					<content>
 						<HBox>
-							<Image src="{ModeloProduto>/product/image_front_url}" width="15em" press="OnClickImage"/>
+							<Image src="{ModeloProduto>/product/image_front_url}" width="5em" press="OnClickImage"/>
 								<VBox >
 									<ObjectAttribute title="Categoria" text="{ModeloProduto>/product/categories}"/>
 									<ObjectAttribute title="Ingredientes" text="{ModeloProduto>/product/ingredients_text}"/>
 									<ObjectAttribute title="Data de Vencimento" text="{ModeloProduto>/product/expiration_date}"/>
 								</VBox>
+						</HBox>
+					</content>
+				</Panel>
+				<Panel headerText="Informações">
+					<content>
+						<HBox>
+							<Image src="{ModeloProduto>/product/image_nutrition_url}" width="5em" press="OnClickImage"/>
+								<Table items="{ModeloProduto>/product/ingredients}">
+									<columns>
+										<Column >
+											<Text text="Descrição"/>
+										</Column>
+									</columns>
+									<columns>
+										<Column >
+											<Text text="Porcentagem Mínima"/>
+										</Column>
+									</columns>
+									<columns>
+										<Column >
+											<Text text="Porcentagem Máxima"/>
+										</Column>
+									</columns>
+									<columns>
+										<Column >
+											<Text text="Porcentagem Máxima"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem >
+											<cells>
+												<Text text="{ModeloProduto>text}"/>
+												<Text text="{ModeloProduto>percent_min}"/>
+												<Text text="{ModeloProduto>percent_max}"/>
+												<Text text="{ModeloProduto>percent_estimate}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
 						</HBox>
 					</content>
 				</Panel>

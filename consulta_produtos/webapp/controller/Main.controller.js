@@ -2,9 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/m/MessageToast",
 	"sap/m/library",
-	"sap/ui/model/json/JSONModel"
-
-], function (Controller, MessageToast, library, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"jquery.sap.global"
+], function (Controller, MessageToast, library, JSONModel, jQuery) {
 	"use strict";
 
 	let urlObject = library.URLHelper;
@@ -38,7 +38,7 @@ sap.ui.define([
 			//promise = quando uma função retorna como parametro de exportação
 			//outra função
 
-			$.ajax(parameters).done(function(response){
+			jQuery.ajax(parameters).done(function(response){
 
 				let oProdutoModel = this.getView().getModel("ModeloProduto");
 				//clear
